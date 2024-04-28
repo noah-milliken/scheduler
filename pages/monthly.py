@@ -1,4 +1,4 @@
-import streamlit_calendar
+from streamlit_calendar import calendar
 import streamlit as st
 
 calendar_options = {
@@ -68,7 +68,9 @@ custom_css = """
         font-size: 2rem;
     }
 """
-calendar = streamlit_calendar.calendar_options()
+calendar = calendar(
+    events=calendar_events, options=calendar_options, custom_css=custom_css
+)
 print(calendar)
 st.write(calendar)
 st.experimental_rerun

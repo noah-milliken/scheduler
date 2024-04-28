@@ -68,9 +68,4 @@ custom_css = """
         font-size: 2rem;
     }
 """
-calendar = calendar(
-    events=calendar_events, options=calendar_options, custom_css=custom_css
-)
-print(calendar)
-st.write(calendar)
-st.experimental_rerun
+calendar(events=calendar_events, options=calendar_options, custom_css=custom_css)

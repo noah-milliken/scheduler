@@ -1,7 +1,6 @@
 from streamlit_calendar import calendar
 import streamlit as st
 
-st.write(calendar)
 calendar_options = {
     "editable": "true",
     "selectable": "true",

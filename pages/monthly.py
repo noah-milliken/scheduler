@@ -1,8 +1,12 @@
 from streamlit_calendar import calendar
 import streamlit as st
+from database import get_sheet
+from streamlit_gsheets import GSheetsConnection
 
+st.set_page_config(layout="wide")
 calendar_options = {
-    "editable": "true",
+    "nowIndicator": "true",
+    "editable": "false",
     "selectable": "true",
     "headerToolbar": {
         "left": "today prev,next",
@@ -11,49 +15,15 @@ calendar_options = {
     },
     "slotMinTime": "07:00:00",
     "slotMaxTime": "22:00:00",
-    "initialView": "resourceTimelineDay",
+    "initialView": "dayGridMonth",
     "resourceGroupField": "building",
     "resources": [
-        {"id": "a", "building": "Building A", "title": "Building A"},
-        {"id": "b", "building": "Stryker Center", "title": "Building B"},
-        {"id": "c", "building": "Building B", "title": "Building C"},
-        {"id": "d", "building": "Building B", "title": "Building D"},
-        {"id": "e", "building": "Building C", "title": "Building E"},
-        {"id": "f", "building": "Building C", "title": "Building F"},
+        {"id": "rec_center", "building": "Rec Center", "title": "Rec Center"},
+        {"id": "stryker", "building": "Stryker Center", "title": "Stryker Center"},
     ],
 }
-calendar_events = [
-    {
-        "title": "Noah",
-        "start": "2024-04-28T15:00:00",
-        "end": "2024-04-28T20:00:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Zack",
-        "start": "2024-04-28T15:00:00",
-        "end": "2024-04-28T20:00:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Event 2",
-        "start": "2024-04-28T07:30:00",
-        "end": "2024-04-28T10:30:00",
-        "resourceId": "b",
-    },
-    {
-        "title": "Jayla",
-        "start": "2024-04-28T09:44:00",
-        "end": "2024-04-28T15:00:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Kelli",
-        "start": "2024-04-28T09:44:00",
-        "end": "2024-04-28T15:00:00",
-        "resourceId": "a",
-    },
-]
+calendar_events = get_sheet()
+
 custom_css = """
     .fc-event-past {
         opacity: 0.8;
